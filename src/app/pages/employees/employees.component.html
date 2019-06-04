@@ -1,0 +1,45 @@
+
+    <table width="100%" height="100vh">
+      <tr><td>
+<div class="container">
+  
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="/">Employees</a>
+    <a class="navbar-brand" routerLink="/add"><i class="fas fa-plus"></i></a>
+  </nav>
+<div class="row p-3">
+    <input
+    class="form-control mr-sm-2"
+    type="search"
+    placeholder="Search"
+    aria-label="Search"
+    [(ngModel)]="searchEmployeeByName"/>
+</div>
+
+<div class="row p-3" >
+    <div class="col-4 col-sm-3"
+     *ngFor="let n of employeeList | searchEmployee : searchEmployeeByName">
+        <div class="card nt-3" style="margin-top: 30px">
+           <a routerLink="/view/{{ n.id }}"> <img [src]="n.image"   class="card-img-top" alt="card image cap" width="200px" height="200px"></a>
+            <div class="card-body">
+              <h5 class="card-title">{{n.name}}</h5>
+              <p class="card-text">{{n.email}}</p>
+              <div class="float-md-right">
+                  <i class="fas fa-pencil-alt px-3 text-primary"
+                  routerLink="/update/{{ n.id }}"></i>
+                  <i class="fas fa-trash-alt text-danger" (click)="onDelete(n.id)"></i>
+               
+                   
+              </div>
+            </div>
+         </div>
+         </div>
+         
+</div>
+
+
+</div>
+</td>
+</tr>
+<router-outlet></router-outlet>
+
